@@ -1,0 +1,51 @@
+chromosomeknight_events:
+  type: world
+  debug: false
+  events:
+    after mythicmob ChromosomeKnight spawns:
+    - title "title:<&6>Chromosome Knight" "subtitle:<&7>has spawned in Arena" stay:3s fade_out:1s target:<server.online_players>
+
+    after mythicmob ChromosomeKnight killed:
+    - title "title:<&6>Chromosome Knight" "subtitle:<&7>has turned into ashes" stay:3s fade_out:1s target:<server.online_players>
+
+chromsomeknight_spawn_task:
+    type: task
+    debug: false
+    script:
+      - stop
+
+      - chunkload <location[chromosomeknight_spawn].chunk>
+      - wait 20t
+      - mythicspawn crknight_em <location[s3hub]>
+      - mythicspawn crsoldierem_em <location[s3hub]>
+      - mythicspawn summoned_crknight_m <location[s3hub]>
+
+chromosomeknight_spawn_reminder_1:
+    type: task
+    debug: false
+    script:
+      - stop
+
+      - announce <empty>
+      - announce "  <&c>Chromosome Knight <&7>will appear in the Boss Arena 30 minutes from now."
+      - announce <empty>
+
+chromosomeknight_spawn_reminder_2:
+    type: task
+    debug: false
+    script:
+      - stop
+
+      - announce <empty>
+      - announce "  <&c>Chromosome Knight <&7>will appear in the Boss Arena 15 minutes from now."
+      - announce <empty>
+
+chromosomeknight_spawn_reminder_3:
+    type: task
+    debug: false
+    script:
+      - stop
+
+      - announce <empty>
+      - announce "  <&c>Chromosome Knight <&7>will appear in the Boss Arena 3 minutes from now."
+      - announce <empty>
