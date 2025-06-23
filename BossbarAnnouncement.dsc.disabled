@@ -1,0 +1,115 @@
+bossbar_announcement:
+    type: world
+    debug: false
+    events:
+        on system time minutely:
+        - playsound <server.online_players> sound:UI_BUTTON_CLICK pitch:1 volume:0.5
+        - random:
+           - run perks_and_benefits
+           - run vote_na_kayo
+           - run bili_kayo_sa_cshop
+           - run discord_join_pls
+
+discord_join_pls:
+  type: task
+  debug: false
+  script:
+    - bossbar event_<player.uuid> players:<server.online_players> "title:<&gradient[from=#7C4751;to=#7C4751]><&l>Be aware of announcement and updates! <&8>| <&f>/discord" color:white
+    - wait 15t
+    - bossbar update event_<player.uuid> color:white progress:0.9
+    - wait 15t
+    - bossbar update event_<player.uuid> color:white progress:0.8
+    - wait 15t
+    - bossbar update event_<player.uuid> color:white progress:0.7
+    - wait 15t
+    - bossbar update event_<player.uuid> color:white progress:0.6
+    - wait 15t
+    - bossbar update event_<player.uuid> color:white progress:0.5
+    - wait 15t
+    - bossbar update event_<player.uuid> color:white progress:0.4
+    - wait 15t
+    - bossbar update event_<player.uuid> color:white progress:0.3
+    - wait 15t
+    - bossbar update event_<player.uuid> color:white progress:0.2
+    - wait 15t
+    - bossbar update event_<player.uuid> color:white progress:0.1
+    - wait 15t
+    - bossbar remove event_<player.uuid>
+
+bili_kayo_sa_cshop:
+  type: task
+  debug: false
+  script:
+    - bossbar event_<player.uuid> players:<server.online_players> "title:<&gradient[from=#7C4751;to=#7C4751]><&l>Purchase crate keys and cosmetics! <&8>| <&f>/cshop" color:white
+    - wait 15t
+    - bossbar update event_<player.uuid> color:white progress:0.9
+    - wait 15t
+    - bossbar update event_<player.uuid> color:white progress:0.8
+    - wait 15t
+    - bossbar update event_<player.uuid> color:white progress:0.7
+    - wait 15t
+    - bossbar update event_<player.uuid> color:white progress:0.6
+    - wait 15t
+    - bossbar update event_<player.uuid> color:white progress:0.5
+    - wait 15t
+    - bossbar update event_<player.uuid> color:white progress:0.4
+    - wait 15t
+    - bossbar update event_<player.uuid> color:white progress:0.3
+    - wait 15t
+    - bossbar update event_<player.uuid> color:white progress:0.2
+    - wait 15t
+    - bossbar update event_<player.uuid> color:white progress:0.1
+    - wait 15t
+    - bossbar remove event_<player.uuid>
+
+vote_na_kayo:
+  type: task
+  debug: false
+  script:
+    - bossbar event_<player.uuid> players:<server.online_players> "title:<&gradient[from=#7C4751;to=#7C4751]><&l>Don't forget to vote our server for rewards! <&8>| <&f>/magbungkalvote" color:white
+    - wait 15t
+    - bossbar update event_<player.uuid> color:white progress:0.9
+    - wait 15t
+    - bossbar update event_<player.uuid> color:white progress:0.8
+    - wait 15t
+    - bossbar update event_<player.uuid> color:white progress:0.7
+    - wait 15t
+    - bossbar update event_<player.uuid> color:white progress:0.6
+    - wait 15t
+    - bossbar update event_<player.uuid> color:white progress:0.5
+    - wait 15t
+    - bossbar update event_<player.uuid> color:white progress:0.4
+    - wait 15t
+    - bossbar update event_<player.uuid> color:white progress:0.3
+    - wait 15t
+    - bossbar update event_<player.uuid> color:white progress:0.2
+    - wait 15t
+    - bossbar update event_<player.uuid> color:white progress:0.1
+    - wait 15t
+    - bossbar remove event_<player.uuid>
+
+perks_and_benefits:
+  type: task
+  debug: false
+  script:
+    - bossbar event_<player.uuid> players:<server.online_players> "title:<&gradient[from=#7C4751;to=#7C4751]><&l>Want more perks and benefits? <&8>| <&f>Check out /store" color:white
+    - wait 15t
+    - bossbar update event_<player.uuid> color:white progress:0.9
+    - wait 15t
+    - bossbar update event_<player.uuid> color:white progress:0.8
+    - wait 15t
+    - bossbar update event_<player.uuid> color:white progress:0.7
+    - wait 15t
+    - bossbar update event_<player.uuid> color:white progress:0.6
+    - wait 15t
+    - bossbar update event_<player.uuid> color:white progress:0.5
+    - wait 15t
+    - bossbar update event_<player.uuid> color:white progress:0.4
+    - wait 15t
+    - bossbar update event_<player.uuid> color:white progress:0.3
+    - wait 15t
+    - bossbar update event_<player.uuid> color:white progress:0.2
+    - wait 15t
+    - bossbar update event_<player.uuid> color:white progress:0.1
+    - wait 15t
+    - bossbar remove event_<player.uuid>

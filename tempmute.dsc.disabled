@@ -1,0 +1,77 @@
+tempmute:
+    type: command
+    name: tempmute
+    description: Does something
+    usage: /tempmute <&lt>player<&gt> <&lt>time<&gt> [reason]
+    tab completions:
+        1: <server.online_players.parse[name]>
+    permission: minecraft.tempmute
+    permission message: <&c>I'm sorry, but you do not have permission to perform this command. Please contact the server administrators if you believe that this is in error.
+    script:
+    - define player <server.match_offline_player[<context.args.get[1]>].if_null[null]>
+    - if <context.args.size> < 2:
+        - narrate "<&c>/tempmute <&lt>player<&gt> <&lt>time<&gt> [reason]"
+    - else if <[player]> == null:
+        - narrate "<&c>This player does not exist!"
+    - else if <[player].has_permission[group.coordinator]>:
+        - narrate "<&c>This player cannot be muted!"
+    - else if <[player].has_flag[muted]>:
+        - narrate "<&c>This player is already muted!"
+    - else if !<duration[<context.args.get[2]>].exists>:
+        - narrate "<&c>Time format not valid!"
+    - else:
+        - flag <[player]> muted expire:<duration[<context.args.get[2]>]>
+        - flag <[player]> "muted_reason:<context.args.get[3].to[last].space_separated.if_null[You have been muted!]>" expire:<duration[<context.args.get[2]>]>
+        - flag <[player]> mute_executor:<player.if_null[CONSOLE]> expire:<duration[<context.args.get[2]>]>
+        - if <server.has_flag[discord.logs.mutes]>:
+            - ~discordmessage id:magbungkal channel:1212849029667627028 "<[player].name> has been muted by <player.name.if_null[CONSOLE]> for <context.args.get[2]> with reason <&dq><context.args.get[3].to[last].space_separated.if_null[You have been muted!]><&dq>."
+
+permmute:
+    type: command
+    name: mute
+    description: Does something
+    usage: /mute <&lt>player<&gt> [reason]
+    tab completions:
+        1: <server.online_players.parse[name]>
+    permission: minecraft.mute
+    permission message: <&c>I'm sorry, but you do not have permission to perform this command. Please contact the server administrators if you believe that this is in error.
+    script:
+    - define player <server.match_offline_player[<context.args.get[1]>].if_null[null]>
+    - if <context.args.size> < 1:
+        - narrate "<&c>/mute <&lt>player<&gt> [reason]"
+    - else if <[player]> == null:
+        - narrate "<&c>This player does not exist!"
+    - else if <[player].has_permission[group.coordinator]>:
+        - narrate "<&c>This player cannot be muted!"
+    - else if <[player].has_flag[muted]>:
+        - narrate "<&c>This player is already muted!"
+    - else:
+        - flag <[player]> muted
+        - flag <[player]> "muted_reason:<context.args.get[2].to[last].space_separated.if_null[You have been muted!]>"
+        - flag <[player]> mute_executor:<player.if_null[CONSOLE]>
+        - if <server.has_flag[discord.logs.mutes]>:
+            - ~discordmessage id:magbungkal channel:1212849029667627028 "<[player].name> has been muted by <player.name.if_null[CONSOLE]> with reason <&dq><context.args.get[2].to[last].space_separated.if_null[You have been muted!]><&dq>."
+
+unmute:
+    type: command
+    name: unmute
+    description: Does something
+    usage: /unmute <&lt>player<&gt>
+    permission: minecraft.unmute
+    permission message: <&c>I'm sorry, but you do not have permission to perform this command. Please contact the server administrators if you believe that this is in error.
+    tab completions:
+        1: <server.players_flagged[muted].parse[name].if_null[]>
+    script:
+    - define player <server.match_offline_player[<context.args.get[1]>].if_null[null]>
+    - if <context.args.size> == 0:
+        - narrate "<&c>/unmute <&lt>player<&gt>"
+    - else if <[player]> == null:
+        - narrate "<&c>This player does not exist!"
+    - else if !<[player].has_flag[muted]>:
+        - narrate "<&c>This player is not muted!"
+    - else:
+        - flag <[player]> muted:!
+        - flag <[player]> muted_reason:!
+        - flag <[player]> muted_executor:!
+        - if <server.has_flag[discord.logs.mutes]>:
+            - ~discordmessage id:magbungkal channel:1212849029667627028 "<[player].name> has been unmuted by <player.name.if_null[CONSOLE]>."

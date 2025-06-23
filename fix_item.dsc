@@ -1,0 +1,24 @@
+# flag repair_cmd.repair_count
+# permission: denizen.repair
+repair_cmd:
+    type: command
+    debug: false
+    name: repair
+    description: Repair broken items up to 3 times
+    usage: /repair
+    permission: denizen.admin
+    script:
+    - define item <player.item_in_hand>
+    - define slot <player.held_item_slot>
+    - if <[item].material.name> == air:
+        - narrate "<&8><&l>[<&6><&l>!<&8><&l>] Please hold an item that you wish to repair"
+    - else:
+        - if <[item].flag[repair_cmd.repair_count].if_null[0]> > 2:
+            - narrate "<&8><&l>[<&6><&l>!<&8><&l>] This item has been repaired more than 3 times already"
+        - else:
+            - if <[item].durability> == 0:
+                - narrate "<&8><&l>[<&6><&l>!<&8><&l>]This item is already at max durability"
+                - stop
+            - narrate "<&8><&l>[<&a><&l>!<&8><&l>] You've successfully repaired your <[item].display.if_null[<[item].material.translated_name>]>"
+            - inventory flag slot:<[slot]> repair_cmd.repair_count:++
+            - inventory adjust slot:<[slot]> durability:0

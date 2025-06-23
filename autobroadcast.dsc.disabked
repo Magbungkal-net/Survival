@@ -1,0 +1,6 @@
+autobroadcast:
+    type: world
+    debug: false
+    events:
+        on system time minutely:
+        - execute as_server "announce PVP Event this friday. Champion VIP Rank or 1000 Tokens. 1st Runner Up 500 Tokens. 2nd Runner Up 300 Tokens. Register in &8[&9/discord&8]"

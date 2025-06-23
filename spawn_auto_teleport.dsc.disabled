@@ -1,0 +1,8 @@
+void_teleport:
+  type: world
+  events:
+    on player moves:
+      - if <player.location.world.name> == s3hub_1 && <player.location.y> < -5:
+        - determine passively cancelled
+        - teleport <player> <player.world.spawn_location>
+        - narrate "<&gradient[from=#7C4751;to=#7C4751]>[SYSTEM] <&e>You were saved from falling into the void!"

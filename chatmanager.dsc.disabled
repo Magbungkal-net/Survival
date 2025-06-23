@@ -1,0 +1,8 @@
+globalchat:
+  type: command
+  debug: false
+  name: globalchat
+  description: globalchat
+  usage: /globalchat
+    - narrate "<gold><bold>You are now on Global Chat!"
+    - execute as_player "chatradius global"
