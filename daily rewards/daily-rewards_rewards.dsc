@@ -8,12 +8,12 @@ DailyRewardsData:
       21d: magbungkalcoins give <player.name> <util.random.int[20].to[25]>
       29d: magbungkalcoins give <player.name> <util.random.int[25].to[50]>
     money:
-      3d: money give <player.name> <util.random.int[50].to[1000]>
-      7d: money give <player.name> <util.random.int[100].to[1300]>
-      12d: money give <player.name> <util.random.int[130].to[1700]>
-      15d: money give <player.name> <util.random.int[170].to[2000]>
-      21d: money give <player.name> <util.random.int[200].to[2500]>
-      29d: money give <player.name> <util.random.int[150].to[5000]>
+      3d: eco give <player.name> <util.random.int[50].to[1000]>
+      7d: eco give <player.name> <util.random.int[100].to[1300]>
+      12d: eco give <player.name> <util.random.int[130].to[1700]>
+      15d: eco give <player.name> <util.random.int[170].to[2000]>
+      21d: eco give <player.name> <util.random.int[200].to[2500]>
+      29d: eco give <player.name> <util.random.int[150].to[5000]>
     # random-key:
     #   vote: crate key give <player.name> tier_1 1
     #   ixora: crate key give <player.name> tier_1 1
