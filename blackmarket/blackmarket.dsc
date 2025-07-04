@@ -4,15 +4,39 @@ commandBlackmarket:
     description: teleport to blackmarket
     usage: /blackmarket
     script:
-    - if  <util.time_now.day_of_week_name> == MONDAY &&  WEDNESDAY && FRIDAY && SUNDAY :
+    - if <util.time_now.day_of_week_name> == MONDAY:
         - playsound <player.location> sound:BLOCK_CONDUIT_ACTIVATE pitch:1 volume:1
         - teleport <location[488.483,84.00000,265.269,s3hub_1]>
         - cast blindness duration:1.5
         - playsound <player.location> sound:ENTITY_ENDER_DRAGON_FLAP volume:0.5
-    - else:
+        - stop
+    - if <util.time_now.day_of_week_name> == WEDNESDAY:
+        - playsound <player.location> sound:BLOCK_CONDUIT_ACTIVATE pitch:1 volume:1
+        - teleport <location[488.483,84.00000,265.269,s3hub_1]>
+        - cast blindness duration:1.5
+        - playsound <player.location> sound:ENTITY_ENDER_DRAGON_FLAP volume:0.5
+        - stop
+    - if <util.time_now.day_of_week_name> == FRIDAY:
+        - playsound <player.location> sound:BLOCK_CONDUIT_ACTIVATE pitch:1 volume:1
+        - teleport <location[488.483,84.00000,265.269,s3hub_1]>
+        - cast blindness duration:1.5
+        - playsound <player.location> sound:ENTITY_ENDER_DRAGON_FLAP volume:0.5
+        - stop
+    - if <util.time_now.day_of_week_name> == SUNDAY:
+        - playsound <player.location> sound:BLOCK_CONDUIT_ACTIVATE pitch:1 volume:1
+        - teleport <location[488.483,84.00000,265.269,s3hub_1]>
+        - cast blindness duration:1.5
+        - playsound <player.location> sound:ENTITY_ENDER_DRAGON_FLAP volume:0.5
+        - stop
+    - else if <util.time_now.day_of_week_name> == TUESDAY:
         - narrate "<&8><&l>[<&gradient[from=#7C4751;to=#7C4751]><bold>Magbungkal<reset><&8><&l>] <&f>Blackmarket is closed. Come back Monday, Wednesday, Friday, or Sunday."
         - stop
-
+    - else if <util.time_now.day_of_week_name> == THURSDAY:
+        - narrate "<&8><&l>[<&gradient[from=#7C4751;to=#7C4751]><bold>Magbungkal<reset><&8><&l>] <&f>Blackmarket is closed. Come back Monday, Wednesday, Friday, or Sunday."
+        - stop
+    - else if <util.time_now.day_of_week_name> == SATURDAY:
+        - narrate "<&8><&l>[<&gradient[from=#7C4751;to=#7C4751]><bold>Magbungkal<reset><&8><&l>] <&f>Blackmarket is closed. Come back Monday, Wednesday, Friday, or Sunday."
+        - stop
 
 taskBlackmarket:
     type: task
