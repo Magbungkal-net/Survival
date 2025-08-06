@@ -16,6 +16,7 @@ rankup_command:
     - define requirements <script[rankup_config].parsed_key[ranks].get[<[rank]>].get[requirements]>
     # parse requirements into a map, check for completion, generate details msg
     - define req_details "<&nl>   <&gradient[from=#7C4751;to=#7C4751]><bold>ʀᴀɴᴋᴜᴘ ᴅᴇᴛᴀɪʟꜱ:<&nl><white>   • ᴄᴜʀʀᴇɴᴛ ʀᴀɴᴋ: <&gradient[from=#7C4751;to=#7C4751]><[rank]> <&nl><white>   • ɴᴇxᴛ ʀᴀɴᴋ: <&gradient[from=#7C4751;to=#7C4751]><[next_rank]> <&nl><white>   • ʀᴀɴᴋᴜᴘ ʀᴇǫᴜɪʀᴇᴍᴇɴᴛꜱ:"
+    - define not_meet_req_details "<&nl> <&gradient[from=#7C4751;to=#7C4751]><bold>ʏᴏᴜ ᴅᴏ ɴᴏᴛ ᴍᴇᴇᴛ ᴛʜᴇ ʀᴇQᴜɪʀᴇᴍᴇɴᴛꜱ ᴛᴏ ʀᴀɴᴋᴜᴘ <&nl>"
     - define requirements_map <map>
     - define ready_for_rankup true
     - foreach <[requirements]> as:req:
@@ -68,7 +69,7 @@ rankup_command:
         - stop
 
     - if !<[ready_for_rankup]>:
-        - narrate "<&8><&l>[<&gradient[from=#7C4751;to=#7C4751]><bold>Magbungkal<reset><&8><&l>] <&f>You do not meet the requirements to rankup! [/rankup details]"
+        - narrate <[req_details]>
         - stop
 
     # commence rankup
