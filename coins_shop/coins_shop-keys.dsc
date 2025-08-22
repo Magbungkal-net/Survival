@@ -10,11 +10,14 @@ keyshop:
     tags_key: <item[tags_key]>
     glow_key: <item[glow_key]>
     cosmetics_key: <item[cosmetics_key]>
+    pets_key: <item[pets_key]>
     backButton: <item[backButton]>
   slots:
+    - [] [] [] [] [1] [] [] [] []
+    - [] [pets_key] [] [tags_key] [] [glow_key] [] [cosmetics_key] []
     - [] [] [] [] [] [] [] [] []
-    - [] [1] [] [tags_key] [] [glow_key] [] [cosmetics_key] []
-    - [] [] [] [] [] [] [] [] []
+
+# 1,949.85 - 2,399.85
 
 keyshop_handler:
   type: world
@@ -27,76 +30,74 @@ keyshop_handler:
       - determine cancelled
     - if <context.item> == <item[backButton]>:
        - inventory open d:coinsshop
-    # monthly_crate_key Key
     - define coins <placeholder[coinsengine_balance_raw_MagbungkalCoins]>
     - if <context.item> == <item[monthly_crate_key]>:
-      - if <[coins]> >= 1935:
-        - clickable monthly_crate_key_event save:monthly_crate_key_event
-        - define text <list[<n><n><n><n><&0><&l>This key cost <&e>1,935 coins<&0><&l>, still want to purchase?<n><n><n>  <element[<&a><&l>[YES]].on_click[<entry[monthly_crate_key_event].command>]>    <&click[/buycoins].type[RUN_COMMAND]><&c><&l>[NO]<&end_click>]>
-        - adjust <player> show_book:written_book[book_pages=<[text]>;book_title=nan;book_author=nan]
+      - if <[coins]> >= 2399.85:
+        - narrate "<&8><&l>[<&gradient[from=#7C4751;to=#7C4751]><bold>Magbungkal<reset><&8><&l>] <&f>This will cost you <&e>2,399.85 Coins <&f>still want to purchase?"
+        - clickable save:clickableMonthlyCrateKey:
+            - announce "<&8><&l>[<&gradient[from=#7C4751;to=#7C4751]><bold>Magbungkal<reset><&8><&l>] <&f><placeholder[player_displayname]> <&f>Bought <&8>(<&f>1x<&8>)<&f> of <&gradient[from=#7C4751;to=#7C4751]>Monthly Crate Key <&e>(/cshop)"
+            - execute as_server "magbungkalcoins take <player.name> 2399.85"
+            - execute as_server "crate key give <player.name> shadow_bat_key 1"
+            - playsound <player> sound:ENTITY_EXPERIENCE_ORB_PICKUP pitch:1 volume:1
+            - stop
+        - narrate "<&8><&l>[<&gradient[from=#7C4751;to=#7C4751]><bold>Magbungkal<reset><&8><&l>] <&f>Click <element[<&a><&l>[CONFIRM]].on_click[<entry[clickableMonthlyCrateKey].command>]> <&r><&f>to buy"
+      - if <[coins]> <= 2399.85:
+        - narrate "<&8><&l>[<&gradient[from=#7C4751;to=#7C4751]><bold>Magbungkal<reset><&8><&l>] <&f>You don't have enough coins!"
         - playsound <player.location> sound:BLOCK_BELL_USE pitch:1 volume:1
-      - if <[coins]> < 1935:
+        - stop
+
+    - if <context.item> == <item[pets_key]>:
+      - if <[coins]> >= 1949.85:
+        - narrate "<&8><&l>[<&gradient[from=#7C4751;to=#7C4751]><bold>Magbungkal<reset><&8><&l>] <&f>This will cost you <&e>1,949.85 Coins <&f>still want to purchase?"
+        - clickable save:clickablePetsKey:
+            - announce "<&8><&l>[<&gradient[from=#7C4751;to=#7C4751]><bold>Magbungkal<reset><&8><&l>] <&f><placeholder[player_displayname]> <&f>Bought <&8>(<&f>1x<&8>)<&f> of <&gradient[from=#7C4751;to=#7C4751]>Pets Key <&e>(/cshop)"
+            - execute as_server "magbungkalcoins take <player.name> 1949.85"
+            - execute as_server "crate key give <player.name> pets 1"
+            - playsound <player> sound:ENTITY_EXPERIENCE_ORB_PICKUP pitch:1 volume:1
+        - narrate "<&8><&l>[<&gradient[from=#7C4751;to=#7C4751]><bold>Magbungkal<reset><&8><&l>] <&f>Click <element[<&a><&l>[CONFIRM]].on_click[<entry[clickablePetsKey].command>]> <&r><&f>to buy"
+      - if <[coins]> <= 1949.85:
+        - narrate "<&8><&l>[<&gradient[from=#7C4751;to=#7C4751]><bold>Magbungkal<reset><&8><&l>] <&f>You don't have enough coins!"
         - playsound <player.location> sound:BLOCK_BELL_USE pitch:1 volume:1
-        - define text <list[<n><n><n><&0>Hey <player.name>!<n><n>You do not have enough <&l>1,935 coins <&0>to purchase this item.<n><n>Top up coins on our webstore: <element[<&6><&l><&n>magbungkal.net/store].custom_color[emphasis].on_hover[<&f>https://magbungkal.net/store].click_url[https://store.magbungkal.net]>]>
-        - adjust <player> show_book:written_book[book_pages=<[text]>;book_title=nan;book_author=nan]
+        - stop
 
     - if <context.item> == <item[tags_key]>:
-      - if <[coins]> >= 1485:
-        - clickable tags_event save:tags_event
-        - define text <list[<n><n><n><n><&0><&l>This key cost <&e>1485 coins<&0><&l>, still want to purchase?<n><n><n>  <element[<&a><&l>[YES]].on_click[<entry[tags_event].command>]>    <&click[/buycoins].type[RUN_COMMAND]><&c><&l>[NO]<&end_click>]>
-        - adjust <player> show_book:written_book[book_pages=<[text]>;book_title=nan;book_author=nan]
+      - if <[coins]> >= 1485.85:
+        - narrate "<&8><&l>[<&gradient[from=#7C4751;to=#7C4751]><bold>Magbungkal<reset><&8><&l>] <&f>This will cost you <&e>1,485.85 Coins <&f>still want to purchase?"
+        - clickable save:clickableTagsKey:
+            - announce "<&8><&l>[<&gradient[from=#7C4751;to=#7C4751]><bold>Magbungkal<reset><&8><&l>] <&f><placeholder[player_displayname]> <&f>Bought <&8>(<&f>1x<&8>)<&f> of <&gradient[from=#7C4751;to=#7C4751]>Tags Key <&e>(/cshop)"
+            - execute as_server "magbungkalcoins take <player.name> 1949.85"
+            - execute as_server "crate key give <player.name> tags 1"
+            - playsound <player> sound:ENTITY_EXPERIENCE_ORB_PICKUP pitch:1 volume:1
+        - narrate "<&8><&l>[<&gradient[from=#7C4751;to=#7C4751]><bold>Magbungkal<reset><&8><&l>] <&f>Click <element[<&a><&l>[CONFIRM]].on_click[<entry[clickableTagsKey].command>]> <&r><&f>to buy"
+      - if <[coins]> <= 1485.85:
+        - narrate "<&8><&l>[<&gradient[from=#7C4751;to=#7C4751]><bold>Magbungkal<reset><&8><&l>] <&f>You don't have enough coins!"
         - playsound <player.location> sound:BLOCK_BELL_USE pitch:1 volume:1
-      - if <[coins]> < 1485:
-        - playsound <player.location> sound:BLOCK_BELL_USE pitch:1 volume:1
-        - define text <list[<n><n><n><&0>Hey <player.name>!<n><n>You do not have enough <&l>1485 coins <&0>to purchase this item.<n><n>Top up coins on our webstore: <element[<&6><&l><&n>magbungkal.net/store].custom_color[emphasis].on_hover[<&f>https://magbungkal.net/store].click_url[https://store.magbungkal.net]>]>
-        - adjust <player> show_book:written_book[book_pages=<[text]>;book_title=nan;book_author=nan]
+        - stop
 
     - if <context.item> == <item[cosmetics_key]>:
-      - if <[coins]> >= 1485:
-        - clickable cosmetic_event save:cosmetic_event
-        - define text <list[<n><n><n><n><&0><&l>This key cost <&e>1485 coins<&0><&l>, still want to purchase?<n><n><n>  <element[<&a><&l>[YES]].on_click[<entry[cosmetic_event].command>]>    <&click[/buycoins].type[RUN_COMMAND]><&c><&l>[NO]<&end_click>]>
-        - adjust <player> show_book:written_book[book_pages=<[text]>;book_title=nan;book_author=nan]
+      - if <[coins]> >= 1485.85:
+        - narrate "<&8><&l>[<&gradient[from=#7C4751;to=#7C4751]><bold>Magbungkal<reset><&8><&l>] <&f>This will cost you <&e>1,485.85 Coins <&f>still want to purchase?"
+        - clickable save:clickableCosmeticKey:
+            - announce "<&8><&l>[<&gradient[from=#7C4751;to=#7C4751]><bold>Magbungkal<reset><&8><&l>] <&f><placeholder[player_displayname]> <&f>Bought <&8>(<&f>1x<&8>)<&f> of <&gradient[from=#7C4751;to=#7C4751]>Cosmetic Key <&e>(/cshop)"
+            - execute as_server "magbungkalcoins take <player.name> 1485.85"
+            - execute as_server "crate key give <player.name> cosmetic 1"
+            - playsound <player> sound:ENTITY_EXPERIENCE_ORB_PICKUP pitch:1 volume:1
+        - narrate "<&8><&l>[<&gradient[from=#7C4751;to=#7C4751]><bold>Magbungkal<reset><&8><&l>] <&f>Click <element[<&a><&l>[CONFIRM]].on_click[<entry[clickableCosmeticKey].command>]> <&r><&f>to buy"
+      - if <[coins]> <= 1485.85:
+        - narrate "<&8><&l>[<&gradient[from=#7C4751;to=#7C4751]><bold>Magbungkal<reset><&8><&l>] <&f>You don't have enough coins!"
         - playsound <player.location> sound:BLOCK_BELL_USE pitch:1 volume:1
-      - if <[coins]> < 1485:
-        - playsound <player.location> sound:BLOCK_BELL_USE pitch:1 volume:1
-        - define text <list[<n><n><n><&0>Hey <player.name>!<n><n>You do not have enough <&l>1485 coins <&0>to purchase this item.<n><n>Top up coins on our webstore: <element[<&6><&l><&n>magbungkal.net/store].custom_color[emphasis].on_hover[<&f>https://magbungkal.net/store].click_url[https://store.magbungkal.net]>]>
-        - adjust <player> show_book:written_book[book_pages=<[text]>;book_title=nan;book_author=nan]
+        - stop
 
     - if <context.item> == <item[glow_key]>:
-      - if <[coins]> >= 1485:
-        - clickable glow_event save:glow_event
-        - define text <list[<n><n><n><n><&0><&l>This key cost <&e>1485 coins<&0><&l>, still want to purchase?<n><n><n>  <element[<&a><&l>[YES]].on_click[<entry[glow_event].command>]>    <&click[/buycoins].type[RUN_COMMAND]><&c><&l>[NO]<&end_click>]>
-        - adjust <player> show_book:written_book[book_pages=<[text]>;book_title=nan;book_author=nan]
+      - if <[coins]> >= 1485.85:
+        - narrate "<&8><&l>[<&gradient[from=#7C4751;to=#7C4751]><bold>Magbungkal<reset><&8><&l>] <&f>This will cost you <&e>1,485.85 Coins <&f>still want to purchase?"
+        - clickable save:clickableGlowKey:
+            - announce "<&8><&l>[<&gradient[from=#7C4751;to=#7C4751]><bold>Magbungkal<reset><&8><&l>] <&f><placeholder[player_displayname]> <&f>Bought <&8>(<&f>1x<&8>)<&f> of <&gradient[from=#7C4751;to=#7C4751]>Glow Key <&e>(/cshop)"
+            - execute as_server "magbungkalcoins take <player.name> 1485.85"
+            - execute as_server "crate key give <player.name> glow 1"
+            - playsound <player> sound:ENTITY_EXPERIENCE_ORB_PICKUP pitch:1 volume:1
+        - narrate "<&8><&l>[<&gradient[from=#7C4751;to=#7C4751]><bold>Magbungkal<reset><&8><&l>] <&f>Click <element[<&a><&l>[CONFIRM]].on_click[<entry[clickableGlowKey].command>]> <&r><&f>to buy"
+      - if <[coins]> <= 1485.85:
+        - narrate "<&8><&l>[<&gradient[from=#7C4751;to=#7C4751]><bold>Magbungkal<reset><&8><&l>] <&f>You don't have enough coins!"
         - playsound <player.location> sound:BLOCK_BELL_USE pitch:1 volume:1
-      - if <[coins]> < 1485:
-        - playsound <player.location> sound:BLOCK_BELL_USE pitch:1 volume:1
-        - define text <list[<n><n><n><&0>Hey <player.name>!<n><n>You do not have enough <&l>1485 coins <&0>to purchase this item.<n><n>Top up coins on our webstore: <element[<&6><&l><&n>magbungkal.net/store].custom_color[emphasis].on_hover[<&f>https://magbungkal.net/store].click_url[https://store.magbungkal.net]>]>
-        - adjust <player> show_book:written_book[book_pages=<[text]>;book_title=nan;book_author=nan]
-
-monthly_crate_key_event:
-    type: task
-    debug: false
-    script:
-    - execute as_server "magbungkalcoins take <player.name> 1935"
-    - execute as_server "crate key give <player.name> aetherburn 1"
-
-glow_event:
-    type: task
-    debug: false
-    script:
-    - execute as_server "magbungkalcoins take <player.name> 1485"
-    - execute as_server "crate key give <player.name> glow 1"
-
-cosmetic_event:
-    type: task
-    debug: false
-    script:
-    - execute as_server "magbungkalcoins take <player.name> 1485"
-    - execute as_server "crate key give <player.name> cosmetic 1"
-
-tags_event:
-    type: task
-    debug: false
-    script:
-    - execute as_server "magbungkalcoins take <player.name> 1485"
-    - execute as_server "crate key give <player.name> tags 1"
+        - stop
